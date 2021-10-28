@@ -1,2 +1,6 @@
 # prepWork
-Files from compass prep module work uploaded here to practice using git/github and collaboration tools.
+Creator: Nikhil Tallapureddy
+
+Files from compass prep module work uploaded here.
+This was made in order to practice using git commands from commandline.
+Specific focus on add, commit and push commands to update files and changes to github repositories.

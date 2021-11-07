@@ -1,3 +1,5 @@
+// Nikhil Tallapureddy
+// Question:
 // Create a function named sumLargestNumbers that will receive an array of numbers and return the sum of the two largest numbers in that array.
 
 const sumLargestNumbers = function(arr) {
@@ -21,6 +23,7 @@ const sumLargestNumbers = function(arr) {
 }
 //Function sumLargestNumbers takes in array of numbers length > 2, and return sum of 2 largest numbers.
 
+//Tests:
 console.log(sumLargestNumbers([10, 10, 10, 10])); //Output: 20
 console.log(sumLargestNumbers([1, 2, 3])); //Output: 5
 console.log(sumLargestNumbers([-10, -4, -34, -6, -92, 2,92])); //Output: 102

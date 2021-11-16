@@ -54,17 +54,25 @@ const arrCleaner = function (arr, len) {
   return arr;
 }
 
-const squareCode = function(message) {
+//Function to transpose the codedMessage to code the message further.
+//Possible method to look into later:
+//codedMessage = codedMessage => codedMessage[0].map((x,i) => codedMessage.map(x => x[i]));
+const transpose = function (matrix) {
+  return matrix[0].map((col, i) => matrix.map(row => row[i]));
+};
+
+const squareCode = function(message1) {
   // remove whitepsace in string.
   // find rows(r) and height(h) of square code.
   // create array of r length and assign characters to it. 
   // use columns as new code/transpose it.
 
   //Clean up input message: trim whitespace at the ends -> split by " " -> join without any spaces.
-  message = message.trim().split(" ").join("");
-  squareLen = Math.ceil(Math.sqrt(message.length)); //Calculate square length.
-  codedMessage = arrCreator(squareLen, message.length); //Create an array of empty nested arrays.
-
+  const message = message1.trim().split(" ").join("");
+  //console.log(message);
+  const squareLen = Math.ceil(Math.sqrt(message.length)); //Calculate square length.
+  let codedMessage = arrCreator(squareLen, message.length); //Create an array of empty nested arrays.
+  //console.log(codedMessage);
   //Split up message into strings of characters of length squareLen.
   for (let i = 0, j = 0; i < message.length; i++) {
     if (i % squareLen === 0 && i !== 0) {
@@ -75,21 +83,15 @@ const squareCode = function(message) {
   codedMessage = arrCleaner(codedMessage, squareLen); //Clean up codedMessage to have strings of length squareLen.
   
   //Split strings into nested list of characters.
-  for (let j = 0; j < codedMessage.length; j++) {
-    codedMessage[j] = codedMessage[j].split("");
+  for (let i = 0; i < codedMessage.length; i++) {
+    codedMessage[i] = codedMessage[i].split("");
   }
 
-  //Function to transpose the codedMessage to code the message further.
-  //Possible method to look into later:
-  //codedMessage = codedMessage => codedMessage[0].map((x,i) => CodedMessage.map(x => x[i]));
-  function transpose(matrix) {
-    return matrix[0].map((col, i) => matrix.map(row => row[i]));
-  }
   codedMessage = transpose(codedMessage);
   
   //Join the transposed codedMessage back into list of strings and trim whitespace off ends.
-  for (let j = 0; j < codedMessage.length; j++) {
-    codedMessage[j] = codedMessage[j].join("").trim();
+  for (let i = 0; i < codedMessage.length; i++) {
+    codedMessage[i] = codedMessage[i].join("").trim();
   }
 
   //Join the fully coded message into one string with spaces and return that.
@@ -98,10 +100,10 @@ const squareCode = function(message) {
 
 //Tests:
 //console.log(squareCode("helloooo"));
-console.log(squareCode("chill out"));
-console.log(squareCode("feed the dog"));
-console.log(squareCode("have a nice day"));
-console.log(squareCode("if man was meant to stay on the ground god would have given us roots"));
+console.log(squareCode("chill"));
+// console.log(squareCode("feed the dog"));
+// console.log(squareCode("have a nice day"));
+// console.log(squareCode("if man was meant to stay on the ground god would have given us roots"));
 
 //Outputs:
 /*

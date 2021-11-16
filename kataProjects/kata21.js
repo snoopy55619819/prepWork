@@ -16,35 +16,39 @@ const getRandomNumber = function () {
   return (Math.floor(Math.random() * 100));
 }
 
-//Gets input from user for their guess.
+//Get input from user for their guess. If invalid response, output 'Guess invalid, try again!'.
+//Input is type string then converted to number.
 const getGuess = function () {
   let prompt = require("prompt-sync")();
   let answer = prompt("Guess a number: ");//Returns a string of the user input.
   if (answer >= 100 || answer < 0) {
-    console.log('bruhhh');
+    console.log('Guess invalid, try again!');
     getGuess();
   }
-  return Number(answer);
+  return Number(answer);//Convert string to number and return.
 }
 
-//Main function.
+//Main function. Interact with user to guess the correct number giving hints when wrong.
 const guessNum = function () {
   const secretNum = getRandomNumber();
-  console.log(secretNum);
+  //console.log(secretNum);
 
-  const pastGuesses = {};
-  let currAnswer = getGuess();
-  pastGuesses[currAnswer] = 1;
-  let guessCount = 1;
+  const pastGuesses = {}; //Empty object to track past guesses.
+  let currAnswer = getGuess(); //Get first guess.
+  pastGuesses[currAnswer] = 1; //Add guess to pastGuesses as key with value 1.
+  let guessCount = 1; //Create and increase guessCount by 1.
 
+  //If answwer is wrong, give hint and get new guess.
   while (currAnswer !== secretNum) {
-    console.log(`Too ${currAnswer < secretNum ? 'Low' : 'high'}!`);
+    console.log(`Too ${currAnswer < secretNum ? 'Low' : 'high'}!`);//Give hint.
 
+    //If guess has not already been guessed, increase guessCount and add to pastGuesses.
     if (pastGuesses[currAnswer] !== 1) {
       pastGuesses[currAnswer] = 1;
       guessCount++
     } 
-    currAnswer = getGuess();
+    currAnswer = getGuess();//Get new guess.
+    //Increase guessCount if guess is right because loop won't excute again.
     if (currAnswer === secretNum) {
       guessCount++
     }
